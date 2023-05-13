@@ -1,6 +1,7 @@
 const express = require('express');
 const cloneRepository = require('./download-files');
 const convertTxt = require('./convertToTxt');
+const fs = require('fs');
 
 const app = express();
 
@@ -8,11 +9,15 @@ const app = express();
 app.use(express.json());
 
 app.get('/downloadRepository', async (req, res) => {
-    const queryParam1 = req.query.param;
-    const res1 = await cloneRepository(queryParam1);
-    convertTxt();
-
-    res.json({ "users": ['userOne', 'userTwo'] });
+    const repositoryUrl = req.query.param;
+    const repositoryName = repositoryUrl.split('/').at(-1);
+    if (!fs.existsSync(`./projects/${repositoryName}`)) {
+      await cloneRepository(repositoryUrl, repositoryName);
+      await convertTxt(repositoryName);
+      res.json({ "status": "repository downloaded and parsed" });
+    } else {
+      res.json({ "status": "repository already exist and parsed" });
+    }
 });
 
 app.post('/processInput', async (req, res) => {

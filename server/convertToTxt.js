@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-function convertTxt() {
-  const sourceDir = './project';
-  const outputDir = './output';
+function convertTxt(repositoryName) {
+  const sourceDir = `./projects/${repositoryName}`;
+  const outputDir = `./output/${repositoryName}`;
   const fileTypes = ['.md', '.js', '.ts', '.css', '.html', '.json', '.sql'];
 
   if (!fs.existsSync(outputDir)) {
