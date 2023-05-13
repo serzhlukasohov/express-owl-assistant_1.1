@@ -12,9 +12,14 @@ app.get('/downloadRepository', async (req, res) => {
     const repositoryUrl = req.query.param;
     const repositoryName = repositoryUrl.split('/').at(-1);
     if (!fs.existsSync(`./projects/${repositoryName}`)) {
-      await cloneRepository(repositoryUrl, repositoryName);
-      await convertTxt(repositoryName);
-      res.json({ "status": "repository downloaded and parsed" });
+      const cloningResult = await cloneRepository(repositoryUrl, repositoryName);
+      console.log('cloningResult', cloningResult);
+      if (cloningResult === true) {
+        await convertTxt(repositoryName);
+        res.json({ "status": "project downloaded and parsed" }); 
+      } else {
+        res.json({ "status": "wrong git address" }); 
+      }
     } else {
       res.json({ "status": "repository already exist and parsed" });
     }
