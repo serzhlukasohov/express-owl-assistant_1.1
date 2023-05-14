@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react'
 
 function App() {
   const [inputValue, setInputValue] = useState('');
+  const [message, setMessage] = useState('');
+  const [isWaitingPromtResult, setIsWaitingPromtResult] = useState(false);
+  const [intervalId, setIntervalId] = useState(null);
 
   const onDownloadRepository = async () => {
     const response = await fetch(`/downloadRepository?param=${inputValue}`);
     const data = await response.json();
     console.log("Data:", data);
   }
-
-
-  const [message, setMessage] = useState('');
-  console.log("🚀 ~ file: App.js:14 ~ App ~ message:", message);
 
   const handleSubmit = async () => {
     const response = await fetch('/processInput', {
@@ -24,7 +23,35 @@ function App() {
 
     const data = await response.json();
     console.log('Response:', data);
+    setIsWaitingPromtResult(true);
   };
+
+  const handlePromtResponse = async () => {
+    const response = await fetch(`/getPromtResult`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ git: inputValue, prompt: message })
+    });
+    const data = await response.json();
+    console.log("Data:", data);
+
+    if (data.success) {
+      setIsWaitingPromtResult(false);
+    }
+  }
+
+  useEffect(() => {
+    if (isWaitingPromtResult) {
+      const id = setInterval(handlePromtResponse, 3000);
+      setIntervalId(id);
+    } else {
+      clearInterval(intervalId);
+      setIntervalId(null);
+    }
+  }, [isWaitingPromtResult])
+
   return (
     <div>
        <input

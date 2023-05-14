@@ -32,4 +32,26 @@ app.post('/processInput', async (req, res) => {
     res.json({ response: 'response.text' });
   });
 
+app.post('/getPromtResult', async (req, res) => {
+  const repositoryName = req.body.git.split('/').at(-1);
+  const prompt = req.body.prompt;
+  
+  console.log(repositoryName, prompt);
+  fs.access('result.txt', fs.constants.F_OK, (err) => {
+    if (err) {
+      res.json({ pending: 'no result yet' });
+      return;
+    }
+  
+    fs.readFile('result.txt', 'utf-8', (err, data) => {
+      if (err) {
+        res.json({ pending: 'no result yet' });
+        return;
+      }  
+      
+      res.json({ success: data });
+    });
+  });
+});
+
 app.listen(5001, () => console.log("Server listening on port 5001"))
