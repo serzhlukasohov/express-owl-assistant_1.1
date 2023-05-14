@@ -37,7 +37,7 @@ const ServicePage = () => {
     setLoading(true);
     try {
       await onDownloadRepository();
-      const response = await fetch("/processInput", {
+      const response = await fetch("Api.owlassist.me/processInput", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const ServicePage = () => {
   };
 
   const handlePromtResponse = async () => {
-    const response = await fetch(`/getPromtResult`, {
+    const response = await fetch(`Api.owlassist.me/getPromtResult`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
