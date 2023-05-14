@@ -86,7 +86,7 @@ app.post("/processInput", async (req, res) => {
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append(
     "Authorization",
-    "Bearer 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"
+    "Bearer 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"
   );
 
   var raw = JSON.stringify({

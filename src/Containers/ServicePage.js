@@ -85,7 +85,7 @@ const ServicePage = () => {
 
   useEffect(() => {
     if (isWaitingPromtResult) {
-      const id = setInterval(handlePromtResponse, 3000);
+      const id = setInterval(handlePromtResponse, 1000);
       setIntervalId(id);
     } else {
       clearInterval(intervalId);
@@ -100,7 +100,7 @@ const ServicePage = () => {
           <div className="hero-text-container flex flex-col align-center">
             <h1 className="hero-image-text">Onboarding Assistant</h1>
             <div className="service-container">
-              <div className="flex margin-bottom-l justify-btw w-100">
+              <div className="flex margin-bottom-l justify-btw w-100 align-center">
                 <label className="service-label margin-right-m">
                   Github URL
                 </label>
@@ -110,16 +110,16 @@ const ServicePage = () => {
                   className="service-input"
                 />
               </div>
-              <div className="flex justify-btw w-100">
+              {/* <div className="flex justify-btw w-100">
                 <label className="service-label margin-right-m">Prompt</label>
                 <Input
                   value={message}
                   setValue={setMessage}
                   className="service-input"
                 />
-              </div>
+              </div> */}
             </div>
-            <Button onClick={handleSubmit}>Submit</Button>
+            <Button onClick={handleSubmit}>Get Onboarding Plan</Button>
           </div>
         </Fragment>
       </LandingImage>
