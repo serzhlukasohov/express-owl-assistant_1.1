@@ -11,18 +11,20 @@ function App() {
     const data = await response.json();
     console.log("Data:", data);
   }
-
+const [test, setTest] = useState('');
   const handleSubmit = async () => {
     const response = await fetch('/processInput', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ input: message })
+      body: JSON.stringify({ input: message || 'What is the purposes of the project?', gitName: inputValue })
     });
 
     const data = await response.json();
-    console.log('Response:', data);
+
+    console.log('Response:', JSON.parse(data.response).choices[0].message.content);
+    setTest(JSON.parse(data.response).choices[0].message.content);
     setIsWaitingPromtResult(true);
   };
 
@@ -67,6 +69,7 @@ function App() {
         placeholder="Enter your input"
       />
       <button onClick={handleSubmit}>Submit</button>
+      <p>{test}</p>
     </div>
   )
 }

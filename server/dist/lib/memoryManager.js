@@ -6,7 +6,6 @@ import { stdout as output } from 'node:process';
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { Document } from 'langchain/document';
 import { BufferWindowMemory } from 'langchain/memory';
-
 const __dirname = new URL('../..', import.meta.url).pathname;
 const memoryDirectory = path.join(__dirname, process.env.MEMORY_VECTOR_STORE_DIR || 'memory');
 let memoryVectorStore;

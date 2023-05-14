@@ -12,10 +12,10 @@ import ora from 'ora';
 import { MarkdownTextSplitter, RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { Document } from 'langchain/document';
 import path from 'path';
+import { YoutubeTranscript } from 'youtube-transcript';
 import { getDefaultOraOptions } from '../config/index.js';
 import { getDirectoryFiles } from '../utils/getDirectoryFiles.js';
 import { Crawler } from './crawler.js';
-
 const __dirname = new URL('../..', import.meta.url).pathname;
 const defaultOraOptions = getDefaultOraOptions(output);
 const dbDirectory = path.join(__dirname, process.env.VECTOR_STORE_DIR || 'db');
@@ -116,6 +116,37 @@ async function addURL(URL, maxPages, numberOfCharactersRequired) {
         const flattenedDocuments = documents.flat();
         const vectorStore = await getContextVectorStore();
         await vectorStore.addDocuments(flattenedDocuments);
+        await vectorStore.save(dbDirectory);
+        spinner.succeed();
+        return;
+    }
+    catch (error) {
+        if (spinner) {
+            spinner.fail(chalk.red(error));
+        }
+        else {
+            output.write(chalk.red(error));
+        }
+        return;
+    }
+}
+async function addYouTube(URLOrVideoID) {
+    let spinner;
+    try {
+        spinner = ora({
+            ...defaultOraOptions,
+            text: `Adding Video transcript from ${URLOrVideoID} to the Context Vector Store`,
+        }).start();
+        const transcript = await YoutubeTranscript.fetchTranscript(URLOrVideoID);
+        const text = transcript.map((part) => part.text).join(' ');
+        const splitter = new RecursiveCharacterTextSplitter();
+        const videoDocs = await splitter.splitDocuments([
+            new Document({
+                pageContent: text,
+            }),
+        ]);
+        const vectorStore = await getContextVectorStore();
+        await vectorStore.addDocuments(videoDocs);
         await vectorStore.save(dbDirectory);
         spinner.succeed();
         return;

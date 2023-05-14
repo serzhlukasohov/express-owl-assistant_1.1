@@ -1,10 +1,10 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-function convertTxt(repositoryName) {
+export function convertTxt(repositoryName) {
   const sourceDir = `./projects/${repositoryName}`;
-  const outputDir = `./output/${repositoryName}`;
-  const fileTypes = ['.md', '.js', '.ts', '.css', '.html', '.json', '.sql'];
+  const outputDir = `./docs/${repositoryName}`;
+  const fileTypes = ['.md', '.js', '.ts', '.css', '.py', '.html', '.json', '.sql'];
 
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
@@ -50,5 +50,3 @@ function getFilesRecursive(dir, fileTypes) {
 
   return files;
 }
-
-module.exports = convertTxt

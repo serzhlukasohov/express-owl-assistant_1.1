@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "nodemon -r dotenv/config server"
   },
   "author": "",
   "license": "ISC",
@@ -25,7 +26,10 @@
     "langchain": "^0.0.75",
     "mammoth": "^1.5.1",
     "node-spider": "^1.4.1",
-    "ora": "^6.3.0"
+    "ora": "^6.3.0",
+    "pdf-parse": "^1.1.1",
+    "turndown": "^7.1.2",
+    "youtube-transcript": "^1.0.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
