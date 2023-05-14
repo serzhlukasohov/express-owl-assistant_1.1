@@ -84,7 +84,7 @@ app.post("/processInput", async (req, res) => {
 
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization", "Bearer sk");
+  myHeaders.append("Authorization", `Bearer ${process.env.API_KEY}`);
 
   var raw = JSON.stringify({
     messages: sliced,

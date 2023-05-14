@@ -2,8 +2,5 @@
 package-lock.json
 /chat_logs
 /db
-/docs
 /memory
-/project
 .env
-/responses

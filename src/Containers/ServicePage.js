@@ -7,6 +7,8 @@ import "./ServicePages.scss";
 import Loading from "../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 
+const basePath = "https://Api.owlassist.me";
+
 const ServicePage = () => {
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState(
@@ -28,18 +30,21 @@ const ServicePage = () => {
   const [isWaitingPromtResult, setIsWaitingPromtResult] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
 
-  const onDownloadRepository = async () => {
-    const response = await fetch(
-      `Api.owlassist.me/downloadRepository?param=${inputValue}`
-    );
-    const data = await response.json();
-    console.log("Data:", data);
+  const downloadRepository = async () => {
+    try {
+      const response = await fetch(
+        `${basePath}/downloadRepository?param=${inputValue}`
+      );
+      const data = await response.json();
+    } catch (err) {
+      console.log("download repo err:", err);
+    }
   };
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      await onDownloadRepository();
-      const response = await fetch("Api.owlassist.me/processInput", {
+      await downloadRepository();
+      const response = await fetch(`${basePath}/processInput`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +54,6 @@ const ServicePage = () => {
           gitName: inputValue,
         }),
       });
-
       const data = await response.json();
 
       console.log(
@@ -63,14 +67,14 @@ const ServicePage = () => {
       setIsWaitingPromtResult(true);
       navigate("/response");
     } catch (err) {
-      console.log("Api error");
+      console.log("Api error: ", err);
     } finally {
       setLoading(false);
     }
   };
 
   const handlePromtResponse = async () => {
-    const response = await fetch(`Api.owlassist.me/getPromtResult`, {
+    const response = await fetch(`${basePath}/getPromtResult`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
