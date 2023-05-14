@@ -1,0 +1,38 @@
+@import "../../colors";
+@import "../../sizes";
+
+.app-header {
+  background-color: #485960;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $header-height;
+  max-height: $header-height;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  .app-header-inner {
+    max-width: $layout-max-width;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .app-header-logo {
+      height: 55px;
+      width: auto;
+    }
+    .header-nav {
+      display: flex;
+      .nav-li {
+        margin: 0 24px;
+        .nav-link {
+          color: $white-text;
+          &:hover {
+            color: $secondary-color;
+          }
+        }
+      }
+    }
+  }
+}

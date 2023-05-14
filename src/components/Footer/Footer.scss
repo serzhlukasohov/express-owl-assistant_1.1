@@ -1,0 +1,30 @@
+@import "../../colors";
+
+.app-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #485960;
+    padding: 24px 0;
+    .app-footer-content {
+        display: flex;
+        margin-bottom: 24px;
+        .app-footer-content-column {
+            display: flex;
+            flex-direction: column;
+            margin: 0 80px;
+            .app-footer-link {
+                margin: 8px 0;
+                color: $white-text;
+                &:hover {
+                    color: $secondary-color;
+                }
+            }
+        }
+    }
+    .copy {
+        color: $white-text;
+        font-size: 10px;
+    }
+}

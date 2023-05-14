@@ -1,0 +1,44 @@
+.request-demo {
+  .request-demo-heading {
+    font-size: 48px;
+    margin-bottom: 36px;
+  }
+  .request-demo-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .request-demo-content {
+      display: flex;
+      flex-direction: column;
+      .request-demo-content-input {
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .input {
+          margin-left: 12px;
+        }
+      }
+    }
+    .request-demo-content-right {
+      display: flex;
+      flex-direction: column;
+      textarea {
+        margin-bottom: 12px;
+        min-height: 100px;
+        min-width: 350px;
+        padding: 8px 12px;
+        resize: vertical;
+        max-height: 400px;
+      }
+    }
+  }
+  .request-demo-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .request-demo-cancel {
+      background-color: #df2426;
+    }
+  }
+}

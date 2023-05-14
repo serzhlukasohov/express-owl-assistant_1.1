@@ -1,0 +1,16 @@
+.app-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 48px;
+    .app-rating-label {
+        margin-right: 24px;
+    }
+    .app-rating-content {
+        display: flex;
+    }
+    .app-rating-content-item {
+        margin-right: 8px;
+        cursor: pointer;
+    }
+}

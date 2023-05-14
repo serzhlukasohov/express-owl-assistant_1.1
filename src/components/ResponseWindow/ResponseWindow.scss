@@ -1,0 +1,30 @@
+.response-window-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  .response-window-container-inner {
+    position: relative;
+    .response-window {
+      width: 600px;
+      min-height: 300px;
+      max-height: 450px;
+      overflow: auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 24px;
+      line-height: 1.3em;
+    }
+    .response-window-container-img {
+      width: 150px;
+      height: auto;
+      position: absolute;
+      bottom: 0;
+      right: -160px;
+    }
+    // .response-window-container-triangle {
+    //   position: absolute;
+    //   right: -20px;
+    //   bottom: 80px;
+    // }
+  }
+}
