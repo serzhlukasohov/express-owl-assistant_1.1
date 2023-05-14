@@ -29,7 +29,9 @@ const ServicePage = () => {
   const [intervalId, setIntervalId] = useState(null);
 
   const onDownloadRepository = async () => {
-    const response = await fetch(`/downloadRepository?param=${inputValue}`);
+    const response = await fetch(
+      `Api.owlassist.me/downloadRepository?param=${inputValue}`
+    );
     const data = await response.json();
     console.log("Data:", data);
   };
