@@ -26,7 +26,7 @@ export function convertTxt(repositoryName) {
     }
 
     const fileContent = fs.readFileSync(inputFilePath, 'utf8');
-    const outputContent = `This is a txt representation of the VirtueMaster file located at ${relativePath}\n\n${fileContent}`;
+    const outputContent = `This is a txt file located at ${relativePath}\n\n${fileContent}`;
     fs.writeFileSync(outputFile, outputContent, 'utf8');
   });
 }
