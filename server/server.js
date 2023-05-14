@@ -5,11 +5,13 @@ import { convertTxt } from "./convertToTxt.js";
 import { exec } from "child_process";
 import fs from "fs";
 import path from "path";
+import cors from "cors";
 
 const app = express();
 
 // Parse JSON in request body
 app.use(express.json());
+app.use(cors());
 
 app.get("/downloadRepository", async (req, res) => {
   const repositoryUrl = req.query.param;
@@ -84,7 +86,10 @@ app.post("/processInput", async (req, res) => {
 
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization", `Bearer ${process.env.API_KEY}`);
+  myHeaders.append(
+    "Authorization",
+    `Bearer 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`
+  );
 
   var raw = JSON.stringify({
     messages: sliced,
