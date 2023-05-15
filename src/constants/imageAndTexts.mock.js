@@ -1,4 +1,8 @@
-import SectionImage1Src from "../assets/section-image.png"
+import SectionImage1Src from "../assets/services/1.png";
+import SectionImage2Src from "../assets/services/2.png";
+import SectionImage3Src from "../assets/services/3.png";
+import SectionImage4Src from "../assets/services/4.png";
+// import SectionImage5Src from "../assets/service/5.png";
 
 export const imageAndTextsMock = [
   {
@@ -14,7 +18,7 @@ export const imageAndTextsMock = [
 Empower your team to start contributing faster, and enhance your development process with our AI-driven onboarding solution.`,
   },
   {
-    imageUrl: SectionImage1Src,
+    imageUrl: SectionImage2Src,
     heading: "User Guide Assistant",
     text: `Provide your project code to our AI-based Virtual Assistant and receive a comprehensive user guide tailored to your software. Streamline the user experience with detailed guides that:
  
@@ -26,7 +30,7 @@ Empower your team to start contributing faster, and enhance your development pro
 Boost your product's usability and customer success with our AI-driven user guide generation.`,
   },
   {
-    imageUrl: SectionImage1Src,
+    imageUrl: SectionImage3Src,
     heading: "Requirements - Code Alignment Assistant",
     text: `Feature Highlight: Requirements-Code Assistant for Code Optimization
  
@@ -40,14 +44,14 @@ Boost your product's usability and customer success with our AI-driven user guid
     Revolutionize your development process with our AI-driven Requirements-Code Assistant and create faster, more robust software solutions.`,
   },
   {
-    imageUrl: SectionImage1Src,
+    imageUrl: SectionImage4Src,
     heading: "User Guide Assistant",
     text: `Feature Highlight: Impact Analyzer for Proactive Project Management
  
     Integrate our AI-based Impact Analyzer into your development process to assess the potential impact of new requirements on your existing code and requirements. Stay ahead of the curve with:
      
         - Early identification of affected code components and dependencies
-        - Comprehensive analysis of how new requirements may influence existing functionalities
+        - Analyzing how new requirements affect existing features
         - Efficient planning for necessary code changes and updates
         - Minimized risk of unexpected bugs or issues
      

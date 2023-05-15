@@ -1,6 +1,11 @@
 import "./Input.scss";
 
-const Input = ({ className = "", value = "", setValue = () => {} }) => {
+const Input = ({
+  className = "",
+  value = "",
+  setValue = () => {},
+  placeholder = "",
+}) => {
   return (
     <input
       className={`app-input ${className}`}
@@ -8,6 +13,7 @@ const Input = ({ className = "", value = "", setValue = () => {} }) => {
       onChange={(ev) => {
         setValue(ev.target.value);
       }}
+      placeholder={placeholder}
     />
   );
 };

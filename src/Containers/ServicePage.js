@@ -6,18 +6,39 @@ import Input from "../components/Input/Input";
 import "./ServicePages.scss";
 import Loading from "../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { mockRoles, promptTextMock } from "../constants/promptMock";
 
-const basePath = "https://Api.owlassist.me";
+const basePath = "";
 
 const ServicePage = () => {
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState(
-    "https://github.com/S-Solo/todo-sample"
+    localStorage.getItem("git") || ""
   );
-  const [message, setMessage] = useState(
-    "act as a tech lead of software development team and create onboarding document for front-end developer according to this project"
-  );
+  const [message, setMessage] = useState(promptTextMock);
   const navigate = useNavigate();
+  const [radio, setRadio] = useState(null);
+
+  const changeRadio = (ev) => {
+    const value = ev.target.value;
+    localStorage.setItem("role", value);
+    processRadioValue(value);
+  };
+
+  const processRadioValue = (value) => {
+    setRadio(value);
+    const el = mockRoles.find((el) => el.role === value);
+    setMessage(
+      `act as a ${el.lead} of software development team and create onboarding document for ${el.role} according to this project`
+    );
+  };
+
+  useEffect(() => {
+    const initialRole = localStorage.getItem("role");
+    if (initialRole) {
+      processRadioValue(initialRole);
+    }
+  }, []);
 
   // const imitateLoading = () => {
   //   setLoading(true);
@@ -106,24 +127,36 @@ const ServicePage = () => {
           <div className="hero-text-container flex flex-col align-center">
             <h1 className="hero-image-text">Onboarding Assistant</h1>
             <div className="service-container">
-              <div className="flex margin-bottom-l justify-btw w-100 align-center">
-                <label className="service-label margin-right-m">
-                  Github URL
-                </label>
-                <Input
-                  value={inputValue}
-                  setValue={setInputValue}
-                  className="service-input"
-                />
+              <div className="flex">
+                {mockRoles.map((el) => {
+                  return (
+                    <div
+                      className="flex margin-right-l align-center"
+                      key={el.role}
+                    >
+                      <label className="service-container-label margin-right-s">
+                        {el.role}
+                      </label>
+                      <input
+                        name="role"
+                        type="radio"
+                        value={el.role}
+                        onChange={changeRadio}
+                        checked={radio === el.role}
+                      />
+                    </div>
+                  );
+                })}
               </div>
-              {/* <div className="flex justify-btw w-100">
-                <label className="service-label margin-right-m">Prompt</label>
-                <Input
-                  value={message}
-                  setValue={setMessage}
-                  className="service-input"
-                />
-              </div> */}
+            </div>
+            <div className="flex margin-bottom-l justify-btw align-center">
+              <label className="service-label margin-right-m">Github URL</label>
+              <Input
+                value={inputValue}
+                setValue={setInputValue}
+                className="service-input"
+                placeholder="Place your github URL"
+              />
             </div>
             <Button onClick={handleSubmit}>Get Onboarding Plan</Button>
           </div>

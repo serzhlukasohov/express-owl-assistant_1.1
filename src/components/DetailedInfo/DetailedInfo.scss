@@ -1,23 +1,23 @@
 .detailed-info {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  background-color: #eee;
+  .detailed-info-heading {
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 24px;
+  }
+  .detailed-info-content {
     display: flex;
-    flex-direction: column;
-    padding: 24px 0;
-    background-color: #eee;
-    .detailed-info-heading {
-        text-align: center;
-        font-size: 48px;
-        margin-bottom: 24px;
+    justify-content: center;
+    align-items: center;
+    .detailed-info-content-image {
+      height: 300px;
+      width: auto;
     }
-    .detailed-info-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .detailed-info-content-image {
-            width: auto;
-            height: 200px;
-        }
-        .detailed-info-content-btn {
-            margin: 0 48px;
-        }
+    .detailed-info-content-btn {
+      margin: 0 48px;
     }
+  }
 }

@@ -26,6 +26,20 @@
     color: white;
     font-size: 32px;
   }
+  .app-loading-hints {
+    position: absolute;
+    z-index: 2002;
+    top: 60%;
+    left: 5%;
+    right: 5%;
+    z-index: 3001;
+    color: white;
+    font-size: 24px;
+    .app-loading-hints-img {
+      width: 120px;
+      height: auto;
+    }
+  }
 }
 
 .loader {
