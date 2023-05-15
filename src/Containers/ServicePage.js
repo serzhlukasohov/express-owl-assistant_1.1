@@ -8,7 +8,7 @@ import Loading from "../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import { mockRoles, promptTextMock } from "../constants/promptMock";
 
-const basePath = "";
+const basePath = "https://Api.owlassist.me";
 
 const ServicePage = () => {
   const [loading, setLoading] = useState(false);
